@@ -1,11 +1,15 @@
-const express = require('express');
-const connect = require('./config/database');
+import express from 'express';
+import bodyParser from 'body-parser';
+
+import { connect } from './config/database.js';
 const app = express();
 
-const TweetRepository = require('./repository/tweet-repository');
-const Comment = require('./models/comment');
-const HashtagRepository = require('./repository/hashtag-repository');
-const TweetService = require('./services/tweet-service');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+import apiRoutes from './routes/index.js';
+
+app.use('/api', apiRoutes);
 
 app.listen(3000, async () => {
     console.log('server started');
@@ -57,10 +61,14 @@ app.listen(3000, async () => {
 
     // console.log(response);
 
-    let service = new TweetService();
-    const tweet = await service.create({
-        content: 'my twitter #working'
-    });
+    // let service = new TweetService();
+    // const tweet = await service.create({
+    //     content: 'my twitter #working'
+    // });
 
-    console.log(tweet);
+    // console.log(tweet);
+
+    // let ser = new service();
+    // await ser.create({content: '#WooHoo !! I have done it..'});
+
 });

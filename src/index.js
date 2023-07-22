@@ -4,6 +4,8 @@ const app = express();
 
 const TweetRepository = require('./repository/tweet-repository');
 const Comment = require('./models/comment');
+const HashtagRepository = require('./repository/hashtag-repository');
+const TweetService = require('./services/tweet-service');
 
 app.listen(3000, async () => {
     console.log('server started');
@@ -16,13 +18,49 @@ app.listen(3000, async () => {
 
     // const tweets = await Tweet.findById('64b8c8ad43807ca688cf378a');
 
-    const tweetRepo = new TweetRepository();
-    const tweet = await tweetRepo.getWithComments('64b8d1a6d602b4d6bd413f89');
-    // const tweet = await tweetRepo.create({content : 'Tweet with comment schema'});
+    // const tweetRepo = new TweetRepository();
+    // const tweet = await tweetRepo.getAll(2, 4);
+    // // const tweet = await tweetRepo.create({content : 'Tweet with comment schema'});
+    // // console.log(tweet);
+    // // const comment = await Comment.create({content: 'new comment'});
+    // // tweet.comments.push(comment);
+    // // await tweet.save();
+
     // console.log(tweet);
-    // const comment = await Comment.create({content: 'new comment'});
-    // tweet.comments.push(comment);
-    // await tweet.save();
+
+    // let repo = new HashtagRepository();
+    // await repo.bulkCreate([
+    //     {
+    //         title: 'Trend',
+    //         tweets: []
+    //     }, 
+    //     {
+    //         title: 'Excited',
+    //         tweets: []
+    //     }, 
+    //     {
+    //         title: 'Python',
+    //         tweets: []
+    //     }, 
+    //     {
+    //         title: 'Fun',
+    //         tweets: []
+    //     },
+    //     {
+    //         title: 'Career',
+    //         tweets: []
+    //     }
+    // ]);
+
+    // let repo = new HashtagRepository();
+    // const response = await repo.findByName(['Excited', 'Trend']);
+
+    // console.log(response);
+
+    let service = new TweetService();
+    const tweet = await service.create({
+        content: 'my twitter #working'
+    });
 
     console.log(tweet);
 });

@@ -74,17 +74,13 @@ app.listen(3000, async () => {
     // let ser = new service();
     // await ser.create({content: '#WooHoo !! I have done it..'});
 
-    const userRepo = new UserRepository();
-    const tweetRepo = new TweetRepository();
-    const tweets = await tweetRepo.getAll(0, 10);
+    // const userRepo = new UserRepository();
+    // const tweetRepo = new TweetRepository();
+    // const tweets = await tweetRepo.getAll(0, 10);
 
-    const user = await userRepo.create({
-        email: 'agni@admin.com',
-        password: '123456',
-        name: 'Agni'
-    });
+    // const user = await userRepo.getAll();
 
-    const likeService = new LikeService();
-    await likeService.toggleLike(tweets[0].id, 'Tweet', user.id);
+    // const likeService = new LikeService();
+    // await likeService.toggleLike(tweets[0].id, 'Tweet', user[0].id);
 
 });
